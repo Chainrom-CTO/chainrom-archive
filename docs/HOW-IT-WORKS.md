@@ -12,24 +12,25 @@ how a program gets onto the chain, and what the reader does to get it back out.
 ```mermaid
 flowchart LR
   subgraph Publish
+    direction TB
     A[Files: engine .js, .wasm, README] --> B[Bundle: CROM v1]
     B --> C[gzip once]
     C --> D[Cut into 24,575-byte chunks]
-    D --> E[keccak256 merkle tree]
-    D --> F[One contract per chunk]
-    F --> G[ROM contract: pointers, root, hashes]
-    E --> G
-    G --> H[Seal]
+    D --> E[Deploy one contract per chunk]
+    E --> F[ROM contract records pointers, root and hashes]
+    F --> G[Seal]
   end
   subgraph Read
-    I[Read header from ROM] --> J[eth_getCode on each pointer]
-    J --> K[Rebuild tree, compare root]
-    K --> L[Check body hash, inflate, check raw hash]
-    L --> M[Open bundle]
-    M --> N[Run engine in the page]
+    direction TB
+    H[Read header from the ROM contract] --> I[eth_getCode on each pointer]
+    I --> J[Rebuild merkle tree, compare root]
+    J --> K[Check body hash, inflate, check raw hash]
+    K --> L[Open bundle]
+    L --> M[Run the engine in the page]
   end
-  H -. chain state .-> I
 ```
+
+The two halves meet at the chain: what Publish writes is exactly what Read fetches.
 
 ## Publishing a program
 
