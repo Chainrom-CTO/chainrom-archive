@@ -17,6 +17,7 @@ belongs to its author. See [docs/PROVENANCE.md](docs/PROVENANCE.md).
 | ROMs | 4 ROMs and their 31 chunk contracts captured at block 67206628, verified against the sealed on-chain hashes |
 | Games as files | Engine `.js`, `.wasm` and `README.txt` extracted from every ROM into `data/extracted/`, each hash-checked |
 | Contract bytecode | 6 contracts captured and hash-checked |
+| Deployers | Creator, creation transaction and block of all 6 contracts, from the block explorer, in `data/explorer.json` |
 | Page captures | Full-page screenshots and PDFs of the live pages in `docs/captures/` |
 | Continuity checks | Run daily; failures open an issue |
 | License | None published upstream; see [Provenance](docs/PROVENANCE.md#licensing) |

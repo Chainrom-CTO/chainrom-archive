@@ -33,10 +33,21 @@ Contract code is immutable, and `data/` holds a verified copy of each contract b
 | `battleship-referee` | BATTLESHIP referee (wager-enabled) | `0x52c7fee72741f3cc7da7d82543f85fcba47261ce` |
 | `depth-token` | $DEPTH token | `0xc23317490b24d6e53c0137ed5d0d2ae565674bcb` |
 
-`owner()` on the four ROMs returns `0x768222343f19e914a457d05b9b8b2752d160d5bd` (all but DRIFT)
-and `0xff3103200510dd7216dd6877a027df1d8d8ffd28` (DRIFT). The referee and the token expose no
-`owner()`. All four ROMs are sealed, which the reader treats as final. The contracts have not
-been audited here, so what an owner can still do beyond that is unreviewed.
+Deployers, from the explorer (`data/explorer.json`):
+
+| Deployer | Contracts |
+|----------|-----------|
+| `0x768222343f19e914a457d05b9b8b2752d160d5bd` | DEPTH, SIEGE, README ROM |
+| `0xff3103200510dd7216dd6877a027df1d8d8ffd28` | DRIFT, BATTLESHIP referee |
+| `0x3711cea4feade896c913c68f01eda97cb06d1a42` | $DEPTH token |
+
+For each ROM, the deployer is also the address that `owner()` returns. Every chunk contract was
+created by its own ROM contract. The referee and the token expose no `owner()`. The token is
+verified on the explorer as `PonsV2LauncherToken` (name "Chainrom", symbol "Depth"); it was
+deployed by a different address than the games. The other five contracts have no verified source.
+
+All four ROMs are sealed, which the reader treats as final. The contracts have not been audited
+here, so what an owner can still do beyond that is unreviewed.
 
 ## Held by others
 

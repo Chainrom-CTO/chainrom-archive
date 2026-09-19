@@ -147,6 +147,9 @@ copy of everything the browser receives, with response headers, is in `snapshots
 - **Publisher, packer and tests are not published.** The site describes them and mentions 207
   tests. None of that is in the public repository. A successor would have to reimplement the
   publishing side from the formats above; the read side and the formats are fully specified.
+- **No contract source, except the token.** None of the ROM or referee contracts has verified
+  source on the block explorer, so their behaviour is known from bytecode, the reader's use of
+  them, and upstream's descriptions. Each ROM contract created its own chunk contracts.
 - **BATTLESHIP's referee is captured as bytecode only.** Its behaviour is described by the
   upstream page and commit history; it has not been analysed here.
 - **The chain is the single copy of the game bytes** apart from this archive. If the chain

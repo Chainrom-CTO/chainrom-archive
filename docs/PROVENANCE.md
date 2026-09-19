@@ -54,13 +54,24 @@ font files; its favicon is an inline SVG.
 `docs/captures/2026-09-19/` holds full-page screenshots and PDFs of the live pages, taken with
 Chrome. Screenshots are downscaled to 1470 px wide.
 
+## Explorer capture
+
+`data/explorer.json` records, for each of the six contracts, the creator address, creation
+transaction, block and timestamp, and whether the explorer holds verified source. It was read
+from the block explorer's public API on 2026-09-19. The explorer sits behind a bot-detection
+check, which this project does not attempt to bypass; the records were fetched from a browser
+session in which the repository owner had passed the check themselves. `npm run verify` checks
+that these records describe the same contracts as the manifest, but they cannot be verified
+offline, and the chain is the authority.
+
 ## Not captured
 
-- **Explorer metadata** (deployer address, deployment transactions, verified source if any).
-  The block explorer sits behind a bot-detection challenge, which this project does not bypass.
-  It can be recorded by hand from a browser.
+- **Verified source of the $DEPTH token.** The explorer holds it (contract `PonsV2LauncherToken`,
+  about 640 KB of JSON including Uniswap v4 libraries); only its metadata is recorded here. It
+  appears to be a third-party launcher template rather than chainrom's own code.
 - **Engine source code, the publisher, the packer and the test suite.** These are referred to
-  by the site and the on-chain READMEs but are not in the public upstream repository.
+  by the site and the on-chain READMEs but are not in the public upstream repository. None of
+  the other five contracts has verified source on the explorer.
 
 ## Licensing
 
