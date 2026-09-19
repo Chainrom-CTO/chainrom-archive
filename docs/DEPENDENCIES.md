@@ -14,7 +14,8 @@ At runtime the pages fetch from two places:
 - The chain RPC below.
 - `cdn.jsdelivr.net`: `battleship.html` imports pinned builds of `@noble/curves@1.9.7` and
   `@noble/hashes@1.8.0`. If jsDelivr or those versions disappear, BATTLESHIP stops working.
-  Vendoring them into `js/vendor/` removes the dependency.
+  The exact modules are archived under `snapshots/site-2026-09-19/third-party/`; vendoring
+  them into `js/vendor/` would remove the dependency.
 
 ## On chain (Robinhood Chain, id 4663)
 

@@ -22,6 +22,11 @@
 refuses to write anything that fails verification. Review the resulting diff: for sealed ROMs and
 immutable contracts it should be empty apart from the capture time and block number.
 
+## Refreshing the site capture
+
+`npm run capture` fetches the live site and writes a new dated directory under `snapshots/`.
+Keep earlier snapshots; they are the record of what the site looked like at the time.
+
 ## Adding a contract
 
 Add it to `scripts/lib/registry.mjs`, run `npm run export`, and document it in
