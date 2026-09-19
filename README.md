@@ -17,7 +17,7 @@ belongs to its author. See [docs/PROVENANCE.md](docs/PROVENANCE.md).
 | ROMs | 4 ROMs and their 31 chunk contracts captured at block 67206628, verified against the sealed on-chain hashes |
 | Games as files | Engine `.js`, `.wasm` and `README.txt` extracted from every ROM into `data/extracted/`, each hash-checked |
 | Contract bytecode | 6 contracts captured and hash-checked |
-| Deployers | Creator, creation transaction and block of all 6 contracts, from the block explorer, in `data/explorer.json` |
+| Deployment history | Creation transaction of all 6 contracts and every chunk-upload and seal transaction of the 4 ROMs, with full inputs and receipts, in `data/history/`; creators and blocks from the block explorer in `data/explorer.json` |
 | Page captures | Full-page screenshots and PDFs of the live pages in `docs/captures/` |
 | Continuity checks | Run daily; failures open an issue |
 | License | None published upstream; see [Provenance](docs/PROVENANCE.md#licensing) |
@@ -40,7 +40,7 @@ upstream. See [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md#limits).
 | Path | Contents |
 |------|----------|
 | `index.html`, `battleship.html`, `css/`, `js/` | The site, as published upstream |
-| `data/` | Chain capture: `manifest.json`, ROM bodies, extracted files, contract bytecode |
+| `data/` | Chain capture: manifest, ROM bodies, extracted files, bytecode, deployment history, explorer records |
 | `snapshots/` | Byte-exact copies of what the live site served, with headers and hashes |
 | `scripts/` | Export, capture, verification and continuity tooling (Node 20+, no dependencies) |
 | `docs/` | Documentation and page captures |

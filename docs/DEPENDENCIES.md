@@ -33,18 +33,27 @@ Contract code is immutable, and `data/` holds a verified copy of each contract b
 | `battleship-referee` | BATTLESHIP referee (wager-enabled) | `0x52c7fee72741f3cc7da7d82543f85fcba47261ce` |
 | `depth-token` | $DEPTH token | `0xc23317490b24d6e53c0137ed5d0d2ae565674bcb` |
 
-Deployers, from the explorer (`data/explorer.json`):
+Who sent the creation transactions (`data/explorer.json`, `data/history/`). Both are plain
+wallets, not contracts.
 
-| Deployer | Contracts |
-|----------|-----------|
-| `0x768222343f19e914a457d05b9b8b2752d160d5bd` | DEPTH, SIEGE, README ROM |
-| `0xff3103200510dd7216dd6877a027df1d8d8ffd28` | DRIFT, BATTLESHIP referee |
-| `0x3711cea4feade896c913c68f01eda97cb06d1a42` | $DEPTH token |
+| Wallet | Created |
+|--------|---------|
+| `0x768222343f19e914a457d05b9b8b2752d160d5bd` | DEPTH, SIEGE, README ROM, and the $DEPTH token (through contracts, see below) |
+| `0xff3103200510dd7216dd6877a027df1d8d8ffd28` | DRIFT and the BATTLESHIP referee |
 
-For each ROM, the deployer is also the address that `owner()` returns. Every chunk contract was
-created by its own ROM contract. The referee and the token expose no `owner()`. The token is
-verified on the explorer as `PonsV2LauncherToken` (name "Chainrom", symbol "Depth"); it was
-deployed by a different address than the games. The other five contracts have no verified source.
+For each ROM, the wallet that created it is also the address that `owner()` returns. Every chunk
+contract was created by its own ROM contract. The referee and the token expose no `owner()`.
+
+The $DEPTH token was not deployed directly. The first wallet above sent a transaction to contract
+`0xe33e9e479df8802cb0866d5d05258bec4cf62948`, and the explorer lists contract
+`0x3711cea4feade896c913c68f01eda97cb06d1a42` as the token's creator. Both are contracts. The
+explorer verifies the token as `PonsV2LauncherToken` (name "Chainrom", symbol "Depth"). The other
+five contracts have no verified source.
+
+`data/history/<id>.json` holds each contract's creation transaction and, for a ROM, every
+transaction that emitted one of its events: one upload per chunk, then the seal. Inputs and
+receipts are complete, so a ROM's publication can be replayed. For the BATTLESHIP referee and the
+token only the creation transaction is recorded.
 
 All four ROMs are sealed, which the reader treats as final. The contracts have not been audited
 here, so what an owner can still do beyond that is unreviewed.

@@ -64,8 +64,23 @@ session in which the repository owner had passed the check themselves. `npm run 
 that these records describe the same contracts as the manifest, but they cannot be verified
 offline, and the chain is the authority.
 
+## Deployment history
+
+`data/history/<id>.json` was produced by `npm run history` from the chain RPC. For every contract
+it holds the creation transaction; for each ROM it also holds every transaction that emitted one
+of the ROM's events (found with `eth_getLogs`): one upload per chunk and the final seal. Each
+record keeps the full input and the receipt's logs. For a direct deployment the input is the init
+code, so the deployment can be replayed exactly.
+
+`npm run verify` checks each input against its recorded hash, that every transaction succeeded,
+that the first transaction created the contract, and that each archived chunk appears in an
+upload transaction, in publication order. The chunk data is therefore tied to how it was
+published, not only to its final on-chain state.
+
 ## Not captured
 
+- **Live contract state.** Token balances and liquidity, and any BATTLESHIP matches in progress,
+  are chain state and are not archived; only code and setup history are.
 - **Verified source of the $DEPTH token.** The explorer holds it (contract `PonsV2LauncherToken`,
   about 640 KB of JSON including Uniswap v4 libraries); only its metadata is recorded here. It
   appears to be a third-party launcher template rather than chainrom's own code.
