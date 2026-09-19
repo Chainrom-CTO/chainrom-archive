@@ -1,0 +1,17 @@
+{
+  "name": "chainrom-archive",
+  "version": "0.1.0",
+  "description": "Verified archive of the chainrom reader and the on-chain data it depends on.",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "verify": "node scripts/verify.mjs",
+    "verify:online": "node scripts/verify.mjs --online",
+    "export": "node scripts/export-chain.mjs",
+    "watch": "node scripts/watch.mjs"
+  }
+}
