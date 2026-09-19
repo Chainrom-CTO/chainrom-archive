@@ -1,0 +1,41 @@
+name: watch
+
+# Daily: keep the upstream mirror current, then check that the chain data, the
+# live site and the domain are all still there. Any failure opens an issue.
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Sync upstream mirror
+        run: scripts/sync-upstream.sh
+      - name: Check chain, site and domain
+        run: npm run watch
+      - name: Open or update an issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create watch --description "Automated continuity alert" --force
+          existing=$(gh issue list --label watch --state open --json number --jq '.[0].number // empty')
+          body="The scheduled continuity check failed. Details: $RUN_URL"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "Continuity check failed" --label watch --body "$body"
+          fi
