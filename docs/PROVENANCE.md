@@ -54,6 +54,13 @@ font files; its favicon is an inline SVG.
 `docs/captures/2026-09-19/` holds full-page screenshots and PDFs of the live pages, taken with
 Chrome. Screenshots are downscaled to 1470 px wide.
 
+## Domain capture
+
+`snapshots/domain-2026-09-19.json` was produced by `npm run domain`. It holds DNS records for
+`chainrom.com` and `www.chainrom.com` and the RDAP registration record, all public data. The
+apex points at GitHub Pages addresses and `www` is a CNAME to the original author's `github.io`
+host. It is evidence of the state on that date; the domain is held by the original author.
+
 ## Explorer capture
 
 `data/explorer.json` records, for each of the six contracts, the creator address, creation

@@ -14,6 +14,8 @@ belongs to its author. See [docs/PROVENANCE.md](docs/PROVENANCE.md).
 |------|-------|
 | Original source | Mirrored on the `upstream` branch; snapshot tagged `snapshot-2026-09-19` |
 | Live site | Byte-exact copy of the 26 files the browser receives (19 from the site, 7 from a CDN), with response headers, in `snapshots/` |
+| Domain | DNS and registration records at the snapshot date, in `snapshots/domain-2026-09-19.json` |
+| Offline boot | The unmodified site and all four ROMs run from this repository with no chain connection (`npm run serve`, `npm run verify:boot`) |
 | ROMs | 4 ROMs and their 31 chunk contracts captured at block 67206628, verified against the sealed on-chain hashes |
 | Games as files | Engine `.js`, `.wasm` and `README.txt` extracted from every ROM into `data/extracted/`, each hash-checked |
 | Contract bytecode | 6 contracts captured and hash-checked |
@@ -41,8 +43,8 @@ upstream. See [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md#limits).
 |------|----------|
 | `index.html`, `battleship.html`, `css/`, `js/` | The site, as published upstream |
 | `data/` | Chain capture: manifest, ROM bodies, extracted files, bytecode, deployment history, explorer records |
-| `snapshots/` | Byte-exact copies of what the live site served, with headers and hashes |
-| `scripts/` | Export, capture, verification and continuity tooling (Node 20+, no dependencies) |
+| `snapshots/` | Byte-exact copies of what the live site served, with headers and hashes; DNS and registration records |
+| `scripts/` | Export, capture, verification, offline server and continuity tooling (Node 20+, no dependencies) |
 | `docs/` | Documentation and page captures |
 
 ## Verify the archive
@@ -66,17 +68,23 @@ npm run verify:online
 The checks reuse the reader's own `js/merkle.mjs` and `js/load.mjs`, so the archive is held to
 the same rules the site applies.
 
-## Run the site locally
-
-The site is static. From the repository root:
+## Run the site with no chain connection
 
 ```sh
-python3 -m http.server 8000
+npm run serve
 ```
 
-and open http://localhost:8000. The page reads game data from the chain RPC at runtime, so it
-needs network access; see [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md). DEPTH, SIEGE and DRIFT
-were booted this way from this repository and verified by the page's own loader.
+and open the address it prints (`http://127.0.0.1:8767/index.html?rpc=/rpc`). This serves the
+unmodified site and answers its chain requests from `data/`, so DEPTH, SIEGE and DRIFT boot from
+this repository alone. All three were booted this way in a browser, where the page's own loader
+matched the root and both hashes and contacted no host except the local server.
+
+`npm run verify:boot` runs the same loader against the archive for all four ROMs, and CI runs it
+on every push. Not covered: BATTLESHIP, which needs the live referee contract and a CDN, and the
+page's "Spot-check" button, which asks a live contract to verify a proof.
+
+The site can also be served with any static server, in which case it reads from the live chain
+RPC; see [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md).
 
 ## Branches
 

@@ -22,6 +22,11 @@
 refuses to write anything that fails verification. Review the resulting diff: for sealed ROMs and
 immutable contracts it should be empty apart from the capture time and block number.
 
+## Refreshing history and the domain record
+
+`npm run history` re-reads each contract's creation and setup transactions into `data/history/`.
+`npm run domain` writes a new dated DNS and registration record under `snapshots/`.
+
 ## Refreshing the site capture
 
 `npm run capture` fetches the live site and writes a new dated directory under `snapshots/`.
