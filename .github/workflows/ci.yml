@@ -16,5 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Verify archived chain data
+      - name: Verify archived data
         run: npm run verify
+      - name: Boot every ROM from the archive, offline
+        run: npm run verify:boot
