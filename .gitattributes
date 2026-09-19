@@ -1,2 +1,6 @@
 * text=auto eol=lf
-data/roms/*.body binary
+
+# Captured bytes must round-trip exactly; their hashes are recorded in manifests.
+data/** -text
+snapshots/** -text
+docs/captures/** binary

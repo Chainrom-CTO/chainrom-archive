@@ -1,12 +1,12 @@
 {
-  "schema": 1,
+  "schema": 2,
   "chain": {
     "id": 4663,
     "name": "Robinhood Chain",
     "rpc": "https://rpc.mainnet.chain.robinhood.com"
   },
-  "capturedAt": "2026-09-19T07:44:40.446Z",
-  "capturedAtBlock": 66913404,
+  "capturedAt": "2026-09-19T15:57:24.089Z",
+  "capturedAtBlock": 67206628,
   "contracts": [
     {
       "id": "depth",
@@ -22,31 +22,88 @@
         "rawHash": "0x8b10dd92a6233a61df70477ca19831e3a97d9bb863980fa2c8a0b91ec21c970b",
         "rawBytes": 794117,
         "chunkCount": 10,
-        "chunkSizes": [
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          922
+        "sealed": true,
+        "chunks": [
+          {
+            "address": "0xdd8d99d95c0dff18bc0486591c94cb54b6a4a7a0",
+            "bytes": 24575,
+            "leafHash": "0x876832152416ed27b53360728e45a620bd04f395a966700c6edf74e88a0b5cd4",
+            "codeHash": "0x8ccd593579fbd7b378ff79f27de997e159fec3d55ca9229bb69246662902f416"
+          },
+          {
+            "address": "0xf4be28790cc14cb829ddcac9ce16a42ba326ac5c",
+            "bytes": 24575,
+            "leafHash": "0x36f584993447799f97065270357b967acdcb210fb05a6f19904b3eabc7175c3f",
+            "codeHash": "0x01846875a3ea91c07e0a5241a0d4a4df99290832618ba0570360096a6bcb20d8"
+          },
+          {
+            "address": "0x9977dd13998ff093a3efed10a80d45cdf65af2d6",
+            "bytes": 24575,
+            "leafHash": "0x71943ba67346804ac59d9b41a1c0f07c4295dfd1c9cecc890fbc8f52bb88b965",
+            "codeHash": "0xe11a078dbe7c740bff7bcaa72cf77b76a926b38ffb8352767711c27ab761a74a"
+          },
+          {
+            "address": "0x187a7f17941b408e48345e05e57373d1b9f24f03",
+            "bytes": 24575,
+            "leafHash": "0x66192d69367120895c5ca99b6c88912ae72f78721074ac232635e57a130dc928",
+            "codeHash": "0x6bee3912bfdcbd16d90abca8ce43822578fd5e7cf398d96a8b320727e76cc7f4"
+          },
+          {
+            "address": "0xbedf071b36d463047d1b66f8a54faeb6bddb88d8",
+            "bytes": 24575,
+            "leafHash": "0xc64c7aff68e7a52ea5893f6dfe8ae231c37d7ad89d5f0faabcc7846c2730c430",
+            "codeHash": "0x068a1380d8a4ddc1f13ac1b18b7546e3d2349629f958ba75236cc94e8d907a86"
+          },
+          {
+            "address": "0x16b60d593d51a8e68b03e12e5ac2b0cb7b413e5a",
+            "bytes": 24575,
+            "leafHash": "0x8dd1d8d5c16f3d6d62be8e4d18404d5ac82c410d6a06f739476cfdb2bd43238c",
+            "codeHash": "0x06e8518aeaad084529b319a824cf923ae05a03bf2e96ad48ff8cbf3f0692424e"
+          },
+          {
+            "address": "0x5e00776469a4d5f3f537e33aeb2c23196fd4ef86",
+            "bytes": 24575,
+            "leafHash": "0xac08d8b1690e717b3bb0e72cb8ee96370728ba917f3337b7e25120e7e7d4479a",
+            "codeHash": "0x185329c44ec37e5cc96ef67463eb4aa4d65efe0bc01e5e0b7cab482b97436fc2"
+          },
+          {
+            "address": "0xdfea0baab0e9717c91c0cf0a8bb0d96ded053966",
+            "bytes": 24575,
+            "leafHash": "0xa949ca97d762474530da6d06cd28d789f72b75def1efc1dda936b8b0592b3e51",
+            "codeHash": "0x47dce75f68c19f8383c7db74e2d2c8e6729560f0de212a4ded0c79b357a69327"
+          },
+          {
+            "address": "0xab2c78b51989dd5b3c3fe370a9fccf9d8303233f",
+            "bytes": 24575,
+            "leafHash": "0xc8200a6ca34bf35636f5f6adbe665e16c859442d995a422af16fb07418fdd245",
+            "codeHash": "0xe5894653874223e70cdb18971778bb58c131753a502f0b6280827508ce8cd386"
+          },
+          {
+            "address": "0x8c4f5a96f1df0227c1c17a633d6b66d4df232b66",
+            "bytes": 922,
+            "leafHash": "0x69a684e25865b938da6185db2c78c1e8f36a3ad1b499e18016dd14910c783557",
+            "codeHash": "0x75f266cd2ca7c1302a456418ff4af02bc14b9d54a9488c3cafbdb3576a35f9ea"
+          }
         ],
-        "pointers": [
-          "0xdd8d99d95c0dff18bc0486591c94cb54b6a4a7a0",
-          "0xf4be28790cc14cb829ddcac9ce16a42ba326ac5c",
-          "0x9977dd13998ff093a3efed10a80d45cdf65af2d6",
-          "0x187a7f17941b408e48345e05e57373d1b9f24f03",
-          "0xbedf071b36d463047d1b66f8a54faeb6bddb88d8",
-          "0x16b60d593d51a8e68b03e12e5ac2b0cb7b413e5a",
-          "0x5e00776469a4d5f3f537e33aeb2c23196fd4ef86",
-          "0xdfea0baab0e9717c91c0cf0a8bb0d96ded053966",
-          "0xab2c78b51989dd5b3c3fe370a9fccf9d8303233f",
-          "0x8c4f5a96f1df0227c1c17a633d6b66d4df232b66"
-        ],
-        "sealed": true
+        "bundle": {
+          "files": [
+            {
+              "name": "README.txt",
+              "bytes": 425,
+              "sha256": "966870d3bd54060d09978b9d6f4dab690c3781e2ac62a5ed4f693634508ca9bd"
+            },
+            {
+              "name": "depth.js",
+              "bytes": 172978,
+              "sha256": "3e9dc3c618142d30f843612a93085fe8f47f6da6fcfb953b0958617a93693a34"
+            },
+            {
+              "name": "depth.wasm",
+              "bytes": 620659,
+              "sha256": "104e82f5e2040f23992132c4579253d9bf5b24e5fee2d268edf4b1c850ac693a"
+            }
+          ]
+        }
       }
     },
     {
@@ -63,31 +120,88 @@
         "rawHash": "0x340a8cc3960c82222c07f8f19427219b650f1417ca7c8e3a3f238e635fd1066b",
         "rawBytes": 798811,
         "chunkCount": 10,
-        "chunkSizes": [
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          1653
+        "sealed": true,
+        "chunks": [
+          {
+            "address": "0xf87693a4349dc46331743db544771b45f63aa66c",
+            "bytes": 24575,
+            "leafHash": "0xb1ecdf4f90c4020594cdb7da93f3db954cf844177032b7c51ae20cbff8e0f111",
+            "codeHash": "0x49137a0ae8a482cc68d4673143f312678f7dee13c9eacc6f9fbadb655ba046fc"
+          },
+          {
+            "address": "0xbcb04574aea0f381595e54c19d6c581f65a7f9ba",
+            "bytes": 24575,
+            "leafHash": "0xf883edaedb8456b9fc32e18b67101775ba77e30c16314fd599b5a81c1563aea8",
+            "codeHash": "0x5afc5969aedd2c2474125a1fe6440696867c4c2ad71116364d18e493bd699804"
+          },
+          {
+            "address": "0x39412f1e4d89c62701dacfdff25ca39aaa7225c3",
+            "bytes": 24575,
+            "leafHash": "0xdb76d61a7cf83aa0989c27a67c0b7791e5934ec2bb95596f795bdc685dbbc0e3",
+            "codeHash": "0xaedc7e7e1db34a14ed63a29e01d8f390d38969f5f728e422e1388897ed5da148"
+          },
+          {
+            "address": "0x5b1f18c3a16265c463f97adf8eb5b56b715ac70e",
+            "bytes": 24575,
+            "leafHash": "0x975c62dc8ff126ee402c02007b2ec8a4c1f19e886f40e03267c4c8877fe848c3",
+            "codeHash": "0x076ced10ffef86c1a7df74d03128bbabccfb7dfb20b180bc05c0e39a39cf9f67"
+          },
+          {
+            "address": "0xad4ac294de806955976c401b778247c3e67b7016",
+            "bytes": 24575,
+            "leafHash": "0x509abd3beb9e58a1fe145dd0586b1135272830b88d3b19cfe1e540c81e47be97",
+            "codeHash": "0x09d1dbb7d20d125f96936850869d52bc1ce7b2755951e70d723e0febe20d7510"
+          },
+          {
+            "address": "0x38142a62b82b4ce7fef0cd35dc9594d582b6b7f9",
+            "bytes": 24575,
+            "leafHash": "0xabdfe32aed2c2eee77b54b83edc676a6e46d80ab6cec6548d6f5ffb8aa9aa80b",
+            "codeHash": "0x44218b28f36a86dd03ab0c2ca5e459952c16c4a24b387d785b6f83b04735b8ba"
+          },
+          {
+            "address": "0x8fcd0170690ed4975a1e2fec11d9f7c531b477f4",
+            "bytes": 24575,
+            "leafHash": "0x13e07ea3c9050902c8e77fabfc41156e379f1e817508f94f7da4369e52f23fd5",
+            "codeHash": "0xba427878da4e7e40e17466e427266bfcad3c3982df704889ae3a04307a690fe1"
+          },
+          {
+            "address": "0x312ec3333489032c123fa023d7d6eabf0169d96e",
+            "bytes": 24575,
+            "leafHash": "0xad66bfea2518c46e4b60bbd55cdcaf622c20dedf1f551ae4e572c8c4e605e0c5",
+            "codeHash": "0x25ec453feb280c1606e3365ae0f336d854ee16e0fa8bc80f9a71106c557a7a86"
+          },
+          {
+            "address": "0x64d7aa679b85554b2a986f886bb78dae9210035e",
+            "bytes": 24575,
+            "leafHash": "0xd8dbb705216e7fda900ae9b96998a92e33eb3919080c31f4b16b64dda74f6611",
+            "codeHash": "0xd3db1bc3dbcbcdbe196c7a35d68a872b906aedb7294a2fbb219ece41c2a10ce7"
+          },
+          {
+            "address": "0xb1d2f3bf0305ff960b8961a845cb95fbdccd0c05",
+            "bytes": 1653,
+            "leafHash": "0x25c3840f4d38dd22381fcb845eceaac4ffb649482d05fed3a69ac931afea2163",
+            "codeHash": "0x349d4e86311a69fe125ecb14987a543ee72bffbc929cc8418e0131bbb20b39d9"
+          }
         ],
-        "pointers": [
-          "0xf87693a4349dc46331743db544771b45f63aa66c",
-          "0xbcb04574aea0f381595e54c19d6c581f65a7f9ba",
-          "0x39412f1e4d89c62701dacfdff25ca39aaa7225c3",
-          "0x5b1f18c3a16265c463f97adf8eb5b56b715ac70e",
-          "0xad4ac294de806955976c401b778247c3e67b7016",
-          "0x38142a62b82b4ce7fef0cd35dc9594d582b6b7f9",
-          "0x8fcd0170690ed4975a1e2fec11d9f7c531b477f4",
-          "0x312ec3333489032c123fa023d7d6eabf0169d96e",
-          "0x64d7aa679b85554b2a986f886bb78dae9210035e",
-          "0xb1d2f3bf0305ff960b8961a845cb95fbdccd0c05"
-        ],
-        "sealed": true
+        "bundle": {
+          "files": [
+            {
+              "name": "README.txt",
+              "bytes": 689,
+              "sha256": "3de9906c10d95711b41ad0e83864c6fb893290a45baf2c08cff0334a3f8fdad8"
+            },
+            {
+              "name": "arena.js",
+              "bytes": 173068,
+              "sha256": "a2d765e34de6eac50b9a8c34c44387f6a72fcfa973998bd3d56161e659c3377a"
+            },
+            {
+              "name": "arena.wasm",
+              "bytes": 624999,
+              "sha256": "9320431f1c6723645d7368523030605926918ed62e9e82176bd64da813b5bfea"
+            }
+          ]
+        }
       }
     },
     {
@@ -104,31 +218,88 @@
         "rawHash": "0x518908802a94490907466f532dc8ba8c9ba11962dc11d531e6ef9b78b638b963",
         "rawBytes": 801358,
         "chunkCount": 10,
-        "chunkSizes": [
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          24575,
-          4408
+        "sealed": true,
+        "chunks": [
+          {
+            "address": "0x0b26e36d5395f1f4c5332b62989134b5bd7659c9",
+            "bytes": 24575,
+            "leafHash": "0x272f6265b51bc5ca2d9281459b4c80e82a9eee9a43215ba57d3255af4b295a67",
+            "codeHash": "0x9871a516838c24459b6d654c334d38827006d90617c2a8ce805902492915e2ef"
+          },
+          {
+            "address": "0xa039fb2f9b32a971ee080b67ebb66bef6280ea62",
+            "bytes": 24575,
+            "leafHash": "0xafaa22685f0e0f4a86f8b246f2b27a1b7b28cd01faa6688eee9be8b5674adf8b",
+            "codeHash": "0x07755d0d5d78225494a7dc2b1905518b5fb8f86ef18f259e4d18d0f995abca8c"
+          },
+          {
+            "address": "0xf6749ecb51f86e837aca6b9b26f97149a9a1f0a5",
+            "bytes": 24575,
+            "leafHash": "0x2427e3302ff02eebbaccef60bbc29f7e6a284d5c860e2cc16c6f1e6b13a9088a",
+            "codeHash": "0xcf9d7e685eb4de43366af4f767bc6e9482647bb266f22ae1cdc81e9d150fca77"
+          },
+          {
+            "address": "0x59ce1211a5234592ffde3ccfe6acbd16bc6aa9d4",
+            "bytes": 24575,
+            "leafHash": "0x018253b6d304ad882e77ab01d9bf161acc632669550b541ac71185aa6f2bd58f",
+            "codeHash": "0xaabe66f2561d9e03323f5c8dcfe1438e4cc950168a22e9d469ef1e48f700c402"
+          },
+          {
+            "address": "0x75c4d99bffc4a3ad2a45c0ccec7bcc15367472db",
+            "bytes": 24575,
+            "leafHash": "0xd0097a1481e1855850073b7fee036f1916254da09b4eba04dcdee93fe74c5c04",
+            "codeHash": "0xb74e4f49dcf27c76d887c954e670422e27effb6dcd381bf594e7d35435954b6a"
+          },
+          {
+            "address": "0x9287c4488a737127735ba109cf01d1998e4cb40c",
+            "bytes": 24575,
+            "leafHash": "0x5bbbe5051cfaebe670a870ae92f2a9a55f36869b6eb16116a0fdf3b0a230170d",
+            "codeHash": "0x2fd2b2812e6e2c07c3d7164af2d3856f56b564495e902cd50a9a3c6382e1b385"
+          },
+          {
+            "address": "0xd3612ec2c9351355a41f9496a605b6d89edde910",
+            "bytes": 24575,
+            "leafHash": "0xe558faea4210806b0044d758ab47c9b97ab5da5effd4d02e5b6e6aa2bcbf8738",
+            "codeHash": "0x7c4aaa1595a4fb56e162fdef4969ee3a6d1ba8e0ce4bdbc67b58859c81ded4f8"
+          },
+          {
+            "address": "0xa3af285cbafdf4eb6e90646c79aa91e7711ccb41",
+            "bytes": 24575,
+            "leafHash": "0x3cf8280cef7c1b530a925d31d87dd78ce092950c97037ab771d49c72c4ad7ab8",
+            "codeHash": "0x14e095f9e7de4970eacdc36cede0c2787446fdbe38953d1304d3b52162c96fa5"
+          },
+          {
+            "address": "0x547a47551fffb1607a86f498d0a30d8308d80a0a",
+            "bytes": 24575,
+            "leafHash": "0xdcb58c64b529821e4b1926b5eb250cdf5cd1f8e0ed070820264c15e60e1a998f",
+            "codeHash": "0x64b01d09d59126d4baa3fdeb5dec7aa6ace7f67b4fa4ba83f6bdd41c26cc82c8"
+          },
+          {
+            "address": "0x67e513462bfc7a4cdd6458b9e20cdd601e57e1cf",
+            "bytes": 4408,
+            "leafHash": "0x57388b2ebb951c63aecf2228d06d77a49ea8874cd1b1dfff80bc5676a6511a69",
+            "codeHash": "0x9213b8cb9713b7a6a732aae6cf3a02d00af296003a3322c604c843cb38b4f705"
+          }
         ],
-        "pointers": [
-          "0x0b26e36d5395f1f4c5332b62989134b5bd7659c9",
-          "0xa039fb2f9b32a971ee080b67ebb66bef6280ea62",
-          "0xf6749ecb51f86e837aca6b9b26f97149a9a1f0a5",
-          "0x59ce1211a5234592ffde3ccfe6acbd16bc6aa9d4",
-          "0x75c4d99bffc4a3ad2a45c0ccec7bcc15367472db",
-          "0x9287c4488a737127735ba109cf01d1998e4cb40c",
-          "0xd3612ec2c9351355a41f9496a605b6d89edde910",
-          "0xa3af285cbafdf4eb6e90646c79aa91e7711ccb41",
-          "0x547a47551fffb1607a86f498d0a30d8308d80a0a",
-          "0x67e513462bfc7a4cdd6458b9e20cdd601e57e1cf"
-        ],
-        "sealed": true
+        "bundle": {
+          "files": [
+            {
+              "name": "README.txt",
+              "bytes": 446,
+              "sha256": "83cefbe24aa28cebaec0c533641257fe34371cc76615f8ff891b439eefdc85d2"
+            },
+            {
+              "name": "drift.js",
+              "bytes": 173068,
+              "sha256": "d74a69bae5b4a8bb2b52167cfd3a78059c80a6ad518fde9a35c072c31dc02d7d"
+            },
+            {
+              "name": "drift.wasm",
+              "bytes": 627789,
+              "sha256": "89cb3d05b32947c603b9ed3eeeddcaf8fb4b620522be34b15e33368bb4fd501a"
+            }
+          ]
+        }
       }
     },
     {
@@ -145,13 +316,34 @@
         "rawHash": "0x425fc08c302719a11b5eb863fcec5839805dfbe67dfbbd5e936eadd662c7e583",
         "rawBytes": 1129,
         "chunkCount": 1,
-        "chunkSizes": [
-          959
+        "sealed": true,
+        "chunks": [
+          {
+            "address": "0x7c50650459c1ecafdb3b538b0dc000a23531aecb",
+            "bytes": 959,
+            "leafHash": "0xf12856ecee7a461f6bbb600c4c10c3ca76c9e740728e1e64202280531ba43670",
+            "codeHash": "0xf9dcc2aa76b2d3d2262ba8a538edbdb46b0d9afbf4bb53984bb3061e393bb9ea"
+          }
         ],
-        "pointers": [
-          "0x7c50650459c1ecafdb3b538b0dc000a23531aecb"
-        ],
-        "sealed": true
+        "bundle": {
+          "files": [
+            {
+              "name": "data/README.txt",
+              "bytes": 136,
+              "sha256": "24e33a132109405e2030dee1217c93b96ecbb80c1d7ef62abf35c7cb85d17d4e"
+            },
+            {
+              "name": "data/palette",
+              "bytes": 768,
+              "sha256": "397ba6f13c1941c441ac6019ef5f2d9bb37d50baf2e7b6d597859e5daf3743fa"
+            },
+            {
+              "name": "engine.wasm",
+              "bytes": 160,
+              "sha256": "88e23cb2372c7f2292eab6c79a27f8e5517ff3b272920023eafd6529b1fd2281"
+            }
+          ]
+        }
       }
     },
     {

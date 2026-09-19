@@ -2,23 +2,27 @@
 /**
  * Capture every contract the reader depends on into data/.
  *
- *   data/manifest.json          addresses, hashes, chunk layout, capture time
- *   data/roms/<id>.body         the gzip payload, chunks concatenated in order
- *   data/bytecode/<id>.hex      runtime bytecode of each contract
+ *   data/manifest.json               addresses, hashes, chunk layout, bundle contents
+ *   data/roms/<id>.body              the gzip payload, chunks concatenated in order
+ *   data/extracted/<id>/<file>       the files inside each ROM (engine, .wasm, README)
+ *   data/bytecode/<id>.hex           runtime bytecode of each contract
  *
  * Nothing is written unless it passes the same checks `npm run verify` applies.
  * Usage: node scripts/export-chain.mjs [--rpc <url>]
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { gunzipSync } from "node:zlib";
 import { readChunk, readHeader, readPointers, rpcOver } from "../js/load.mjs";
 import { fromHex, keccak, toHex } from "./lib/bytes.mjs";
-import { checkCode, checkRom } from "./lib/checks.mjs";
+import { checkCode, checkRom, chunkCode } from "./lib/checks.mjs";
+import { bundleFiles, describeFiles } from "./lib/extract.mjs";
 import { CHAIN, CONTRACTS } from "./lib/registry.mjs";
 
 const DATA_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "data");
 const OWNER_SELECTOR = "0x8da5cb5b"; // owner()
+const SCHEMA_VERSION = 2;
 
 const rpcFlag = process.argv.indexOf("--rpc");
 const rpc = rpcOver(rpcFlag > -1 ? process.argv[rpcFlag + 1] : CHAIN.rpc);
@@ -42,17 +46,26 @@ async function captureRom(address) {
   const chunks = [];
   for (const pointer of pointers) chunks.push(await readChunk(pointer, rpc));
 
+  const body = Buffer.concat(chunks);
+  const files = bundleFiles(gunzipSync(body));
+
   return {
-    body: Buffer.concat(chunks),
+    body,
+    files,
     rom: {
       root: header.root.toLowerCase(),
       bodyHash: header.bodyHash.toLowerCase(),
       rawHash: header.rawHash.toLowerCase(),
       rawBytes: header.rawBytes,
       chunkCount: header.chunkCount,
-      chunkSizes: chunks.map((chunk) => chunk.length),
-      pointers,
       sealed: true,
+      chunks: chunks.map((chunk, i) => ({
+        address: pointers[i].toLowerCase(),
+        bytes: chunk.length,
+        leafHash: keccak(chunk),
+        codeHash: keccak(chunkCode(chunk)),
+      })),
+      bundle: { files: describeFiles(files) },
     },
   };
 }
@@ -73,11 +86,25 @@ async function captureContract(contract) {
   };
   const problems = checkCode(base, code);
 
-  if (contract.role !== "rom") return { entry: base, code, body: null, problems };
+  if (contract.role !== "rom") return { entry: base, code, body: null, files: [], problems };
 
-  const { body, rom } = await captureRom(contract.address);
+  const { body, files, rom } = await captureRom(contract.address);
   const entry = { ...base, rom };
-  return { entry, code, body, problems: [...problems, ...checkRom(entry, body)] };
+  return { entry, code, body, files, problems: [...problems, ...checkRom(entry, body)] };
+}
+
+async function writeCapture({ entry, code, body, files }) {
+  await writeFile(path.join(DATA_DIR, "bytecode", `${entry.id}.hex`), toHex(code) + "\n");
+  if (!body) return;
+  await writeFile(path.join(DATA_DIR, "roms", `${entry.id}.body`), body);
+
+  const outDir = path.join(DATA_DIR, "extracted", entry.id);
+  await rm(outDir, { recursive: true, force: true });
+  for (const { name, bytes } of files) {
+    const target = path.join(outDir, name);
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, bytes);
+  }
 }
 
 async function main() {
@@ -101,20 +128,18 @@ async function main() {
 
   await mkdir(path.join(DATA_DIR, "roms"), { recursive: true });
   await mkdir(path.join(DATA_DIR, "bytecode"), { recursive: true });
-  for (const { entry, code, body } of captures) {
-    await writeFile(path.join(DATA_DIR, "bytecode", `${entry.id}.hex`), toHex(code) + "\n");
-    if (body) await writeFile(path.join(DATA_DIR, "roms", `${entry.id}.body`), body);
-  }
+  for (const capture of captures) await writeCapture(capture);
 
   const manifest = {
-    schema: 1,
+    schema: SCHEMA_VERSION,
     chain: { id: CHAIN.id, name: CHAIN.name, rpc: CHAIN.rpc },
     capturedAt: new Date().toISOString(),
     capturedAtBlock: block,
     contracts: captures.map(({ entry }) => entry),
   };
   await writeFile(path.join(DATA_DIR, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
-  console.log(`wrote ${captures.length} contracts at block ${block}`);
+  const chunkTotal = captures.reduce((n, { entry }) => n + (entry.rom?.chunkCount ?? 0), 0);
+  console.log(`wrote ${captures.length} contracts and ${chunkTotal} chunk contracts at block ${block}`);
 }
 
 main().catch((error) => {
