@@ -12,7 +12,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { rpcOver } from "../js/load.mjs";
 import { fromHex } from "./lib/bytes.mjs";
-import { checkCode, checkOnline, checkRom } from "./lib/checks.mjs";
+import { checkCode, checkHistory, checkOnline, checkRom } from "./lib/checks.mjs";
 import { sha256 } from "./lib/extract.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -42,10 +42,12 @@ async function verifyEntry(entry, rpc) {
   const code = fromHex(await readFile(path.join(DATA_DIR, "bytecode", `${entry.id}.hex`), "utf8"));
   const problems = checkCode(entry, code);
 
-  if (entry.rom) {
-    const body = await readFile(path.join(DATA_DIR, "roms", `${entry.id}.body`));
-    problems.push(...checkRom(entry, body), ...(await checkExtracted(entry)));
-  }
+  const body = entry.rom ? await readFile(path.join(DATA_DIR, "roms", `${entry.id}.body`)) : null;
+  if (entry.rom) problems.push(...checkRom(entry, body), ...(await checkExtracted(entry)));
+
+  const history = JSON.parse(await readFile(path.join(DATA_DIR, "history", `${entry.id}.json`), "utf8"));
+  problems.push(...checkHistory(entry, history, body));
+
   if (rpc) problems.push(...(await checkOnline(entry, rpc)));
   return problems;
 }
@@ -89,13 +91,18 @@ const TX_HASH = /^0x[0-9a-f]{64}$/;
  * only checks that they describe the same contracts as the manifest and are
  * well-formed, which catches transcription mistakes.
  */
-function checkExplorer(manifest, explorer) {
+function checkExplorer(manifest, explorer, histories) {
   const addresses = new Map(manifest.contracts.map((entry) => [entry.id, entry.address]));
   const problems = [];
   for (const record of explorer.contracts) {
     if (addresses.get(record.id) !== record.address) problems.push(`${record.id}: address does not match the manifest`);
     if (!ADDRESS.test(record.creator)) problems.push(`${record.id}: creator is not a lowercase address`);
     if (!TX_HASH.test(record.creationTx)) problems.push(`${record.id}: creation transaction is not a lowercase hash`);
+
+    const [creation] = histories.get(record.id)?.transactions ?? [];
+    if (creation && (creation.hash !== record.creationTx || creation.from !== record.creationTxFrom || creation.to !== record.creationTxTo)) {
+      problems.push(`${record.id}: differs from the recorded creation transaction`);
+    }
   }
   const recorded = new Set(explorer.contracts.map((record) => record.id));
   for (const id of addresses.keys()) if (!recorded.has(id)) problems.push(`${id}: no explorer record`);
@@ -110,7 +117,11 @@ async function verifyExplorer(manifest) {
     if (error.code === "ENOENT") return { total: 0, failures: 0 };
     throw error;
   }
-  const problems = checkExplorer(manifest, explorer);
+  const histories = new Map();
+  for (const { id } of manifest.contracts) {
+    histories.set(id, JSON.parse(await readFile(path.join(DATA_DIR, "history", `${id}.json`), "utf8")));
+  }
+  const problems = checkExplorer(manifest, explorer, histories);
   console.log(`${problems.length ? "FAIL" : "ok  "} data/explorer.json  ${explorer.contracts.length} records`);
   for (const problem of problems) console.log(`       - ${problem}`);
   return { total: 1, failures: problems.length ? 1 : 0 };

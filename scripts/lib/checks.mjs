@@ -94,6 +94,56 @@ export function checkRom(entry, body) {
   return [...problems, ...checkBundle(rom, raw)];
 }
 
+const shortHash = (hash) => hash.slice(0, 12);
+
+/**
+ * Each chunk must appear inside an upload transaction, and in the same order
+ * the chunks were published in, which ties the archived data to its history.
+ */
+function checkChunkUploads(rom, body, transactions) {
+  const inputs = transactions.map((tx) => Buffer.from(tx.input.slice(2), "hex"));
+  const chunks = splitChunks(body, rom.chunks.map((chunk) => chunk.bytes));
+  const problems = [];
+  let cursor = 0;
+  chunks.forEach((chunk, i) => {
+    const found = inputs.findIndex((input, j) => j >= cursor && input.includes(chunk));
+    if (found === -1) {
+      problems.push(`chunk ${i} is not in an upload transaction, or is out of order`);
+    } else {
+      cursor = found + 1;
+    }
+  });
+  return problems;
+}
+
+/** Creation and setup transactions against their recorded hashes and the archived data. */
+export function checkHistory(entry, history, body) {
+  const { transactions } = history;
+  if (!transactions.length) return ["no transactions recorded"];
+
+  const problems = [];
+  for (const tx of transactions) {
+    const input = Buffer.from(tx.input.slice(2), "hex");
+    if (input.length !== tx.inputBytes || keccak(input) !== tx.inputHash) {
+      problems.push(`${shortHash(tx.hash)}: input does not match its recorded hash`);
+    }
+    if (tx.status !== 1) problems.push(`${shortHash(tx.hash)}: transaction did not succeed`);
+  }
+
+  if (!isCreation(entry, transactions[0])) problems.push("first transaction is not this contract's creation");
+  return entry.rom ? [...problems, ...checkChunkUploads(entry.rom, body, transactions)] : problems;
+}
+
+/**
+ * A contract is created either directly (the receipt names it) or by another
+ * contract during a call, in which case the receipt has no contract address and
+ * the best evidence is that the new contract itself emitted an event.
+ */
+function isCreation(entry, tx) {
+  if (tx.to === null) return tx.contractAddress?.toLowerCase() === entry.address;
+  return tx.logs.some((log) => log.address.toLowerCase() === entry.address);
+}
+
 /** Chunk contracts on the chain: same order, same code as archived. */
 async function checkChunkContracts(entry, rpc) {
   const { rom } = entry;

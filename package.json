@@ -13,6 +13,7 @@
     "verify:online": "node scripts/verify.mjs --online",
     "export": "node scripts/export-chain.mjs",
     "capture": "node scripts/capture-site.mjs",
+    "history": "node scripts/capture-history.mjs",
     "watch": "node scripts/watch.mjs"
   }
 }
