@@ -81,6 +81,41 @@ async function verifySnapshots() {
   return { total: directories.length, failures };
 }
 
+const ADDRESS = /^0x[0-9a-f]{40}$/;
+const TX_HASH = /^0x[0-9a-f]{64}$/;
+
+/**
+ * Explorer records are third-party data that cannot be verified offline, so this
+ * only checks that they describe the same contracts as the manifest and are
+ * well-formed, which catches transcription mistakes.
+ */
+function checkExplorer(manifest, explorer) {
+  const addresses = new Map(manifest.contracts.map((entry) => [entry.id, entry.address]));
+  const problems = [];
+  for (const record of explorer.contracts) {
+    if (addresses.get(record.id) !== record.address) problems.push(`${record.id}: address does not match the manifest`);
+    if (!ADDRESS.test(record.creator)) problems.push(`${record.id}: creator is not a lowercase address`);
+    if (!TX_HASH.test(record.creationTx)) problems.push(`${record.id}: creation transaction is not a lowercase hash`);
+  }
+  const recorded = new Set(explorer.contracts.map((record) => record.id));
+  for (const id of addresses.keys()) if (!recorded.has(id)) problems.push(`${id}: no explorer record`);
+  return problems;
+}
+
+async function verifyExplorer(manifest) {
+  let explorer;
+  try {
+    explorer = JSON.parse(await readFile(path.join(DATA_DIR, "explorer.json"), "utf8"));
+  } catch (error) {
+    if (error.code === "ENOENT") return { total: 0, failures: 0 };
+    throw error;
+  }
+  const problems = checkExplorer(manifest, explorer);
+  console.log(`${problems.length ? "FAIL" : "ok  "} data/explorer.json  ${explorer.contracts.length} records`);
+  for (const problem of problems) console.log(`       - ${problem}`);
+  return { total: 1, failures: problems.length ? 1 : 0 };
+}
+
 async function main() {
   const manifest = JSON.parse(await readFile(path.join(DATA_DIR, "manifest.json"), "utf8"));
   const rpc = isOnline ? rpcOver(manifest.chain.rpc) : null;
@@ -95,9 +130,10 @@ async function main() {
     failures += problems.length ? 1 : 0;
   }
 
+  const explorer = await verifyExplorer(manifest);
   const snapshots = await verifySnapshots();
-  const total = manifest.contracts.length + snapshots.total;
-  failures += snapshots.failures;
+  const total = manifest.contracts.length + explorer.total + snapshots.total;
+  failures += explorer.failures + snapshots.failures;
 
   const scope = isOnline ? "offline and against the chain" : "offline";
   console.log(`\n${total - failures}/${total} verified ${scope}`);

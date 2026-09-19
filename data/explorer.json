@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "source": "https://robinhoodchain.blockscout.com/api/v2",
+  "capturedAt": "2026-09-19",
+  "note": "Read-only records from the block explorer's public API, fetched in a browser session that had passed the explorer's bot check. Not verifiable offline; the chain itself is the authority.",
+  "contracts": [
+    {
+      "id": "depth",
+      "address": "0x5b2ed277a723c71b4e1c041e1ce0035c313ae931",
+      "creator": "0x768222343f19e914a457d05b9b8b2752d160d5bd",
+      "creationTx": "0x202e860a301be61bf623b0bbd5968e600a4cbb50638ec2b31861c4bc79aeb83b",
+      "creationBlock": 64001474,
+      "creationTimestamp": "2026-09-15T22:17:56Z",
+      "sourceVerified": false
+    },
+    {
+      "id": "siege",
+      "address": "0x16f5c165e7ab37712949e71502072439f0191b4a",
+      "creator": "0x768222343f19e914a457d05b9b8b2752d160d5bd",
+      "creationTx": "0x0d262ece50ad9423b83de61f5066961a7042a5640a486aea7ebb6e1fe49a62ed",
+      "creationBlock": 64980734,
+      "creationTimestamp": "2026-09-17T01:40:41Z",
+      "sourceVerified": false
+    },
+    {
+      "id": "drift",
+      "address": "0xd1054ceaebc7b73a76ce259aa56656311ddb31fc",
+      "creator": "0xff3103200510dd7216dd6877a027df1d8d8ffd28",
+      "creationTx": "0xeb27f3ca8357ee5b13eed04fa1460c385b01f12eddec66d3d2e5eaab4ecbe4be",
+      "creationBlock": 65812207,
+      "creationTimestamp": "2026-09-18T00:54:51Z",
+      "sourceVerified": false
+    },
+    {
+      "id": "readme-rom",
+      "address": "0xaaa063ded7115b3346b140bf1a1f9c46074a6591",
+      "creator": "0x768222343f19e914a457d05b9b8b2752d160d5bd",
+      "creationTx": "0xa4c926d536729512eda147b9edac981afea852a6f8bb8a17d4501c68e32c7294",
+      "creationBlock": 63934606,
+      "creationTimestamp": "2026-09-15T20:24:03Z",
+      "sourceVerified": false
+    },
+    {
+      "id": "battleship-referee",
+      "address": "0x52c7fee72741f3cc7da7d82543f85fcba47261ce",
+      "creator": "0xff3103200510dd7216dd6877a027df1d8d8ffd28",
+      "creationTx": "0x1ce5741c95e2772e06736ee71bddb0b815afb62dfbf2b2a6f833e5a232e6cf82",
+      "creationBlock": 65151510,
+      "creationTimestamp": "2026-09-17T06:27:08Z",
+      "sourceVerified": false
+    },
+    {
+      "id": "depth-token",
+      "address": "0xc23317490b24d6e53c0137ed5d0d2ae565674bcb",
+      "creator": "0x3711cea4feade896c913c68f01eda97cb06d1a42",
+      "creationTx": "0x94910b9df0bdc2c3a4af64ea8d8edb816cbe5284533d0d4cc590c2074a9b544a",
+      "creationBlock": 64921741,
+      "creationTimestamp": "2026-09-17T00:01:47Z",
+      "sourceVerified": true,
+      "verifiedSource": {
+        "contractName": "PonsV2LauncherToken",
+        "primaryFile": "contracts/src/v2/PonsV2LauncherToken.sol",
+        "language": "solidity",
+        "compiler": "v0.8.35+commit.47b9dedd",
+        "optimization": true,
+        "optimizationRuns": 200,
+        "evmVersion": "cancun",
+        "license": "none",
+        "note": "Source is on the explorer (about 640 KB of JSON including Uniswap v4 libraries) and has not been copied into this repository."
+      },
+      "token": { "name": "Chainrom", "symbol": "Depth" }
+    }
+  ],
+  "chunkContracts": {
+    "note": "Every chunk contract of every ROM was created by that ROM's own contract (the explorer's creator field equals the ROM address). None has verified source.",
+    "creatorIsRom": ["depth", "siege", "drift", "readme-rom"],
+    "count": 31
+  }
+}
