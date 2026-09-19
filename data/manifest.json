@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "chain": {
+    "id": 4663,
+    "name": "Robinhood Chain",
+    "rpc": "https://rpc.mainnet.chain.robinhood.com"
+  },
+  "capturedAt": "2026-09-19T07:44:40.446Z",
+  "capturedAtBlock": 66913404,
+  "contracts": [
+    {
+      "id": "depth",
+      "label": "DEPTH",
+      "role": "rom",
+      "address": "0x5b2ed277a723c71b4e1c041e1ce0035c313ae931",
+      "owner": "0x768222343f19e914a457d05b9b8b2752d160d5bd",
+      "codeBytes": 2732,
+      "codeHash": "0x4c65c77c03cfe8132cabcf871416c63023b7c063bf3d1a1b8476858acbbcf87b",
+      "rom": {
+        "root": "0xc637eced7fc66c9ca9e4ad126db24111e3b76ad3bff2bef3c08ebc506a0a9560",
+        "bodyHash": "0xb14a99a988cac0f4c50ef02e995d0a167a5ad50d854f163473e7cd6e9f9962bb",
+        "rawHash": "0x8b10dd92a6233a61df70477ca19831e3a97d9bb863980fa2c8a0b91ec21c970b",
+        "rawBytes": 794117,
+        "chunkCount": 10,
+        "chunkSizes": [
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          922
+        ],
+        "pointers": [
+          "0xdd8d99d95c0dff18bc0486591c94cb54b6a4a7a0",
+          "0xf4be28790cc14cb829ddcac9ce16a42ba326ac5c",
+          "0x9977dd13998ff093a3efed10a80d45cdf65af2d6",
+          "0x187a7f17941b408e48345e05e57373d1b9f24f03",
+          "0xbedf071b36d463047d1b66f8a54faeb6bddb88d8",
+          "0x16b60d593d51a8e68b03e12e5ac2b0cb7b413e5a",
+          "0x5e00776469a4d5f3f537e33aeb2c23196fd4ef86",
+          "0xdfea0baab0e9717c91c0cf0a8bb0d96ded053966",
+          "0xab2c78b51989dd5b3c3fe370a9fccf9d8303233f",
+          "0x8c4f5a96f1df0227c1c17a633d6b66d4df232b66"
+        ],
+        "sealed": true
+      }
+    },
+    {
+      "id": "siege",
+      "label": "SIEGE",
+      "role": "rom",
+      "address": "0x16f5c165e7ab37712949e71502072439f0191b4a",
+      "owner": "0x768222343f19e914a457d05b9b8b2752d160d5bd",
+      "codeBytes": 2732,
+      "codeHash": "0x4c65c77c03cfe8132cabcf871416c63023b7c063bf3d1a1b8476858acbbcf87b",
+      "rom": {
+        "root": "0x134d6da410aa09333cea6b2b78e58918154deada58ca9b824a4f70603c52958a",
+        "bodyHash": "0xa412954253ab37bd07d5ebbdd47d30f49ab91813440c665848c221c47db25bc3",
+        "rawHash": "0x340a8cc3960c82222c07f8f19427219b650f1417ca7c8e3a3f238e635fd1066b",
+        "rawBytes": 798811,
+        "chunkCount": 10,
+        "chunkSizes": [
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          1653
+        ],
+        "pointers": [
+          "0xf87693a4349dc46331743db544771b45f63aa66c",
+          "0xbcb04574aea0f381595e54c19d6c581f65a7f9ba",
+          "0x39412f1e4d89c62701dacfdff25ca39aaa7225c3",
+          "0x5b1f18c3a16265c463f97adf8eb5b56b715ac70e",
+          "0xad4ac294de806955976c401b778247c3e67b7016",
+          "0x38142a62b82b4ce7fef0cd35dc9594d582b6b7f9",
+          "0x8fcd0170690ed4975a1e2fec11d9f7c531b477f4",
+          "0x312ec3333489032c123fa023d7d6eabf0169d96e",
+          "0x64d7aa679b85554b2a986f886bb78dae9210035e",
+          "0xb1d2f3bf0305ff960b8961a845cb95fbdccd0c05"
+        ],
+        "sealed": true
+      }
+    },
+    {
+      "id": "drift",
+      "label": "DRIFT",
+      "role": "rom",
+      "address": "0xd1054ceaebc7b73a76ce259aa56656311ddb31fc",
+      "owner": "0xff3103200510dd7216dd6877a027df1d8d8ffd28",
+      "codeBytes": 2732,
+      "codeHash": "0x4c65c77c03cfe8132cabcf871416c63023b7c063bf3d1a1b8476858acbbcf87b",
+      "rom": {
+        "root": "0xe3161f9e6f72c55808ecb59aac448c88ca3862b35381d8bba0ccd62958007858",
+        "bodyHash": "0xea330e76b45d704e87e66e6b8851c1c4d37643484f074b37f56d71f21f15dec0",
+        "rawHash": "0x518908802a94490907466f532dc8ba8c9ba11962dc11d531e6ef9b78b638b963",
+        "rawBytes": 801358,
+        "chunkCount": 10,
+        "chunkSizes": [
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          24575,
+          4408
+        ],
+        "pointers": [
+          "0x0b26e36d5395f1f4c5332b62989134b5bd7659c9",
+          "0xa039fb2f9b32a971ee080b67ebb66bef6280ea62",
+          "0xf6749ecb51f86e837aca6b9b26f97149a9a1f0a5",
+          "0x59ce1211a5234592ffde3ccfe6acbd16bc6aa9d4",
+          "0x75c4d99bffc4a3ad2a45c0ccec7bcc15367472db",
+          "0x9287c4488a737127735ba109cf01d1998e4cb40c",
+          "0xd3612ec2c9351355a41f9496a605b6d89edde910",
+          "0xa3af285cbafdf4eb6e90646c79aa91e7711ccb41",
+          "0x547a47551fffb1607a86f498d0a30d8308d80a0a",
+          "0x67e513462bfc7a4cdd6458b9e20cdd601e57e1cf"
+        ],
+        "sealed": true
+      }
+    },
+    {
+      "id": "readme-rom",
+      "label": "README ROM",
+      "role": "rom",
+      "address": "0xaaa063ded7115b3346b140bf1a1f9c46074a6591",
+      "owner": "0x768222343f19e914a457d05b9b8b2752d160d5bd",
+      "codeBytes": 2732,
+      "codeHash": "0x4c65c77c03cfe8132cabcf871416c63023b7c063bf3d1a1b8476858acbbcf87b",
+      "rom": {
+        "root": "0xf12856ecee7a461f6bbb600c4c10c3ca76c9e740728e1e64202280531ba43670",
+        "bodyHash": "0xf12856ecee7a461f6bbb600c4c10c3ca76c9e740728e1e64202280531ba43670",
+        "rawHash": "0x425fc08c302719a11b5eb863fcec5839805dfbe67dfbbd5e936eadd662c7e583",
+        "rawBytes": 1129,
+        "chunkCount": 1,
+        "chunkSizes": [
+          959
+        ],
+        "pointers": [
+          "0x7c50650459c1ecafdb3b538b0dc000a23531aecb"
+        ],
+        "sealed": true
+      }
+    },
+    {
+      "id": "battleship-referee",
+      "label": "BATTLESHIP referee",
+      "role": "referee",
+      "address": "0x52c7fee72741f3cc7da7d82543f85fcba47261ce",
+      "owner": null,
+      "codeBytes": 8899,
+      "codeHash": "0xd823234b1f0d9f1ee7f4b61c85a055ac46bd84d799f3ebb1b3a2543feb37fd4a"
+    },
+    {
+      "id": "depth-token",
+      "label": "$DEPTH token",
+      "role": "token",
+      "address": "0xc23317490b24d6e53c0137ed5d0d2ae565674bcb",
+      "owner": null,
+      "codeBytes": 3248,
+      "codeHash": "0x8b25c46f55edbc6e0e981e97e0174546da98393f5144156dd6b896ffd945f979"
+    }
+  ]
+}
